@@ -28,6 +28,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="page-wrap auth-wrap">
@@ -67,3 +68,4 @@ const Login = () => {
 };
 
 export default Login;
+
