@@ -50,6 +50,9 @@ const Login = () => {
             <label className="label">Password</label>
             <input type="password" className="input" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
+          <div className="auth-forgot">
+            <Link to="/forgot-password">Forgot password?</Link>
+          </div>
           <button type="submit" className="btn btn-primary" style={{ width: "100%" }} disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>
