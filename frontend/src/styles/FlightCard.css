@@ -1,0 +1,337 @@
+/* Boarding-pass style flight card: route on the left, tear-off stub (price + Select)
+   on the right. Half-circle notches mark the perforation. On phones the stub moves
+   below the route and the perforation turns horizontal. */
+
+.flight-card {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 14px;
+  padding: 0;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Emerald edge on the left, like the colored band on a ticket. */
+.flight-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent) 60%, var(--color-accent-dark));
+  z-index: 2;
+}
+
+/* A soft light sweep that glides across the card on hover. */
+.flight-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40%;
+  width: 30%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-18deg);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.flight-card:hover {
+  box-shadow: var(--card-highlight), var(--shadow-md);
+  border-color: var(--color-accent-light);
+}
+
+.flight-card:hover::after {
+  opacity: 1;
+  left: 120%;
+  transition: left 0.9s ease, opacity 0.2s ease;
+}
+
+.flight-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+}
+
+.flight-card-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 190px;
+  flex-shrink: 0;
+}
+
+.airline-avatar {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  background: var(--color-navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.flight-airline {
+  min-width: 0;
+}
+
+.flight-airline-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flight-airline-code {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 3px;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.flight-class {
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-dark);
+}
+
+.flight-class-business {
+  background: var(--color-gold-soft);
+  color: var(--color-teal);
+}
+
+.flight-class-first {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+.flight-card-route {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.flight-time-block {
+  min-width: 0;
+  text-align: center;
+}
+
+.flight-time {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+.flight-city {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.flight-country {
+  font-size: 0.74rem;
+  color: var(--color-text-muted);
+}
+
+.flight-line {
+  flex: 1;
+  min-width: 70px;
+  max-width: 170px;
+  text-align: center;
+}
+
+.flight-duration,
+.flight-stops {
+  font-size: 0.76rem;
+  color: var(--color-text-muted);
+}
+
+.flight-stops.nonstop {
+  color: var(--color-success-text);
+  font-weight: 600;
+}
+
+.flight-track {
+  position: relative;
+  height: 20px;
+  margin: 2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flight-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 2px dashed var(--color-border);
+}
+
+.flight-plane {
+  position: relative;
+  transform: rotate(90deg);
+  color: var(--color-accent);
+  background: var(--card-mid);
+  padding: 0 4px;
+  box-sizing: content-box;
+}
+
+/* ---- Tear-off stub ---- */
+
+.flight-stub {
+  position: relative;
+  width: 190px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  border-left: 2px dashed var(--color-accent-light);
+  background: linear-gradient(180deg, var(--color-accent-soft) 0%, var(--color-bg) 100%);
+}
+
+.flight-stub::before,
+.flight-stub::after {
+  content: "";
+  position: absolute;
+  left: -11px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  z-index: 1;
+}
+
+.flight-stub::before {
+  top: -11px;
+  clip-path: inset(50% 0 0 0);
+}
+
+.flight-stub::after {
+  bottom: -11px;
+  clip-path: inset(0 0 50% 0);
+}
+
+.flight-price-block {
+  text-align: center;
+}
+
+.flight-price {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-accent-dark);
+}
+
+.flight-price-note {
+  margin-top: 2px;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+.flight-select {
+  width: 100%;
+}
+
+/* ---- Tablet: stack the airline above the route so nothing gets squeezed ---- */
+@media (max-width: 1060px) {
+  .flight-main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .flight-card-left {
+    width: auto;
+  }
+  .flight-stub {
+    width: 170px;
+  }
+}
+
+/* ---- Phones: stub goes underneath, perforation becomes horizontal ---- */
+@media (max-width: 640px) {
+  .flight-card {
+    flex-direction: column;
+  }
+  .flight-main {
+    padding: 16px 16px 14px;
+  }
+  .flight-card-route {
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .flight-time {
+    font-size: 1.25rem;
+  }
+  .flight-line {
+    min-width: 56px;
+  }
+  .flight-stub {
+    width: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 16px;
+    border-left: none;
+    border-top: 2px dashed var(--color-accent-light);
+  }
+  .flight-stub::before,
+  .flight-stub::after {
+    top: -11px;
+    bottom: auto;
+  }
+  .flight-stub::before {
+    left: -11px;
+    clip-path: inset(0 0 0 50%);
+  }
+  .flight-stub::after {
+    left: auto;
+    right: -11px;
+    clip-path: inset(0 50% 0 0);
+  }
+  .flight-price-block {
+    text-align: left;
+  }
+  .flight-select {
+    width: auto;
+    min-width: 110px;
+  }
+}
+
+@media (max-width: 360px) {
+  .flight-country {
+    display: none;
+  }
+}

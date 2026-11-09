@@ -1,0 +1,381 @@
+/* Fonts (Sora + Plus Jakarta Sans) are loaded from index.html. */
+
+/* Wingspan palette -- "Aviation Hybrid".
+   Base  : Modern Aviation SaaS (navy #003A65 + sky blues, cool off-white background)
+   Action: Professional Logistical amber (#F6D10F) for the ONE main button on a screen
+   Status: standard aviation colours -- Normal = green, Caution = amber, Warning = red
+   Variable names from the old theme are kept so every page picks the new look up. */
+:root {
+  /* Brand */
+  --color-navy: #003a65;          /* primary: header, hero, avatars, table heads */
+  --color-navy-light: #0b5a93;    /* hover state of navy */
+  --color-midnight: #002744;      /* footer, deepest navy */
+  --color-accent: #2f90d4;        /* secondary: focus, active, borders, icons */
+  --color-accent-dark: #1a6fae;   /* links + small text on light bg (AA contrast) */
+  --color-accent-soft: #e6f3fb;
+  --color-accent-light: #6ec0e9;  /* accent: highlights, hover borders */
+  --color-teal: #1a6fae;
+  --color-teal-dark: #135a8f;
+  --color-gold: #f6d10f;          /* action colour */
+  --color-gold-soft: #fef6c9;
+  --color-on-gold: #002744;       /* text that sits on top of gold */
+
+  /* Surfaces + text */
+  --color-bg: #f7f7ff;
+  --color-card: #ffffff;
+  --card-gradient: linear-gradient(155deg, #ffffff 0%, #f7f7ff 60%, #edf1f5 100%);
+  --card-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --card-mid: #edf1f5;
+  --color-text: #0b1b2b;
+  --color-text-muted: #51647a;
+  --color-border: #dce4ee;
+  --color-heading: var(--color-navy);
+
+  /* Aviation status colours: *-text for words/icons, *-bg for chips + banners,
+     *-border for outlines, *-solid for dots and filled bars. */
+  --status-normal-text: #15803d;
+  --status-normal-bg: #e4f6ea;
+  --status-normal-border: #a7ddb9;
+  --status-normal-solid: #22c55e;
+  --status-caution-text: #92400e;
+  --status-caution-bg: #fff4d6;
+  --status-caution-border: #f3d27a;
+  --status-caution-solid: #f59e0b;
+  --status-warning-text: #c62828;
+  --status-warning-bg: #fdecec;
+  --status-warning-border: #f5b5b5;
+  --status-warning-solid: #ff4747;
+
+  /* Old names, now pointing at the status colours */
+  --color-success-bg: var(--status-normal-bg);
+  --color-success-text: var(--status-normal-text);
+  --color-danger-bg: var(--status-warning-bg);
+  --color-danger-text: var(--status-warning-text);
+
+  --cta-gradient: linear-gradient(135deg, #ffe14a 0%, #f6d10f 55%, #e6c200 100%);
+  --font-heading: "Sora", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --shadow-sm: 0 1px 2px rgba(0, 58, 101, 0.06), 0 3px 10px rgba(0, 58, 101, 0.06);
+  --shadow-md: 0 16px 36px rgba(0, 58, 101, 0.18);
+  --shadow-glow: 0 10px 26px rgba(246, 209, 15, 0.45);
+  --focus-ring: rgba(47, 144, 212, 0.3);
+}
+
+/* Dark theme -- toggled by adding data-theme="dark" on <html> (see AuthContext). */
+[data-theme="dark"] {
+  --color-navy: #0a4a7a;
+  --color-navy-light: #1263a3;
+  --color-midnight: #0b0d0e;
+  --color-heading: #e3f1fa;
+  --color-accent: #4aaae6;
+  --color-accent-dark: #8fd0f2;
+  --color-accent-soft: #13293a;
+  --color-accent-light: #6ec0e9;
+  --color-teal: #6ec0e9;
+  --color-teal-dark: #a9dcf3;
+  --color-gold: #f6d10f;
+  --color-gold-soft: #332c08;
+  --color-bg: #121313;
+  --color-card: #1a1d1f;
+  --card-gradient: linear-gradient(155deg, #212528 0%, #1a1d1f 60%, #161819 100%);
+  --card-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --card-mid: #1a1d1f;
+  --color-text: #eaf0f5;
+  --color-text-muted: #9aa7b3;
+  --color-border: #2a3036;
+
+  --status-normal-text: #4ade80;
+  --status-normal-bg: #10301f;
+  --status-normal-border: #1f5a39;
+  --status-caution-text: #fbbf24;
+  --status-caution-bg: #3a2c08;
+  --status-caution-border: #6b5113;
+  --status-warning-text: #ff7b7b;
+  --status-warning-bg: #3a1616;
+  --status-warning-border: #6d2a2a;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 14px 34px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 8px 22px rgba(246, 209, 15, 0.28);
+  --focus-ring: rgba(110, 192, 233, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  /* "clip" (not "hidden") stops accidental sideways scroll on phones without breaking
+     position: sticky on the navbar and the filter sidebar. */
+  overflow-x: clip;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin-top: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+img, svg, video {
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Buttons ---- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 22px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--cta-gradient);
+  color: var(--color-on-gold);
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.06);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-accent {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+.btn-accent:hover:not(:disabled) {
+  background: var(--color-navy-light);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.btn-outline:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent-dark);
+}
+
+/* ---- Cards + form fields ---- */
+
+.card {
+  background: var(--card-gradient);
+  border-radius: var(--radius-md);
+  box-shadow: var(--card-highlight), var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+.input {
+  width: 100%;
+  min-height: 44px; /* comfortable tap target on phones */
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  font-family: var(--font-body);
+  font-size: 1rem; /* 16px stops iOS from zooming into the field */
+  background: var(--color-card);
+  color: var(--color-text);
+  transition: background 0.2s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.75;
+}
+
+.input:focus,
+select:focus,
+input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--color-accent-light);
+  outline-offset: 2px;
+}
+
+.label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ---- Page scaffolding ---- */
+
+.page-wrap {
+  min-height: calc(100vh - 140px);
+  /* top/bottom only: the shorthand "padding: 36px 0 64px" wiped out .container's
+     left/right padding, so content touched the screen edge on phones. */
+  padding-top: 36px;
+  padding-bottom: 64px;
+}
+
+.section-title {
+  font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+  color: var(--color-heading);
+  margin-bottom: 6px;
+}
+
+.section-subtitle {
+  color: var(--color-text-muted);
+  margin-bottom: 28px;
+}
+
+.auth-error {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.deal-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.deal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent-light);
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive breakpoints: tablets/small laptops (860px), large phones (640px)
+   and small phones (420px).
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 16px;
+  }
+  .page-wrap {
+    padding-top: 22px;
+    padding-bottom: 44px;
+  }
+}
+
+@media (max-width: 420px) {
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .btn {
+    padding: 11px 16px;
+    font-size: 0.92rem;
+  }
+  .booking-review-card {
+    padding: 18px !important;
+  }
+  .booking-passenger-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .auth-wrap {
+    padding: 30px 12px;
+  }
+  .auth-card {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .passenger-panel {
+    min-width: 0;
+    width: calc(100vw - 32px);
+    max-width: 320px;
+  }
+  .hero-search,
+  .hero-text {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+  .ai-panel {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: 84px;
+  }
+}
+
+[data-theme="dark"] .ai-icon-btn.mic-active {
+  background: var(--status-warning-bg);
+  color: var(--status-warning-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

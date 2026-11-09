@@ -1,0 +1,387 @@
+/* Flight results page: heading, "update search" bar, filter sidebar and the list. */
+
+.results-head {
+  margin-bottom: 20px;
+}
+
+.results-title {
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  color: var(--color-heading);
+  overflow-wrap: anywhere;
+}
+
+.results-arrow {
+  color: var(--color-accent);
+  padding: 0 2px;
+}
+
+.results-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin: 8px 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.results-count {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.results-status {
+  color: var(--color-text-muted);
+}
+
+/* ---- Update search bar: 4 columns on desktop, 2 on tablets, 1 on phones ---- */
+
+.modify-search-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  align-items: end;
+  gap: 14px;
+  padding: 18px 20px;
+  margin-bottom: 22px;
+}
+
+.modify-search-field {
+  min-width: 0;
+}
+
+.modify-search-submit {
+  width: 100%;
+  min-height: 44px;
+}
+
+.modify-search-error {
+  grid-column: 1 / -1;
+}
+
+/* ---- Layout: filters on the left, flights on the right ---- */
+
+.results-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.filter-sidebar {
+  width: 250px;
+  min-width: 250px;
+  padding: 20px;
+  position: sticky;
+  top: 84px;
+}
+
+.filter-group {
+  margin-bottom: 22px;
+}
+
+.filter-group-title {
+  font-size: 0.9rem;
+  color: var(--color-heading);
+  margin-bottom: 10px;
+}
+
+.filter-empty {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.filter-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  font-size: 0.92rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.filter-checkbox-row input[type="checkbox"] {
+  accent-color: var(--color-accent);
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+.price-slider {
+  width: 100%;
+  accent-color: var(--color-accent);
+  margin: 6px 0 8px;
+}
+
+.price-slider-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-accent-dark);
+}
+
+.filter-clear {
+  width: 100%;
+}
+
+.btn.filters-toggle {
+  display: none;
+}
+
+.filters-badge {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--cta-gradient);
+  color: var(--color-on-gold);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.results-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.results-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sort-select {
+  width: 210px;
+}
+
+.sort-order-btn {
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.leg-heading {
+  font-size: 1.15rem;
+  color: var(--color-heading);
+  margin: 4px 0 12px;
+}
+
+.leg-heading-return {
+  margin-top: 28px;
+  margin-bottom: 4px;
+}
+
+.leg-note {
+  margin-bottom: 12px;
+  font-size: 0.88rem;
+}
+
+.leg-card {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.leg-title {
+  font-size: 1.1rem;
+  color: var(--color-heading);
+}
+
+.leg-meta {
+  margin: 4px 0 14px;
+}
+
+/* ---- Empty / error states ---- */
+
+.empty-state {
+  padding: 32px 24px;
+  text-align: center;
+  background: var(--color-card);
+  border: 1.5px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.empty-state h4 {
+  font-size: 1.15rem;
+  color: var(--color-heading);
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  max-width: 46ch;
+  margin: 0 auto 16px;
+  color: var(--color-text-muted);
+}
+
+.empty-state-error {
+  border-color: var(--color-danger-text);
+}
+
+.empty-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.suggestions {
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-border);
+}
+
+.suggestions-title {
+  margin: 0 0 12px !important;
+  font-weight: 600;
+  color: var(--color-text) !important;
+}
+
+.suggestion-chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.suggestion-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-card);
+  color: var(--color-text);
+  font-size: 0.92rem;
+  font-weight: 600;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.suggestion-chip small {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.suggestion-chip:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+}
+
+/* ---- Loading skeleton (shows while flights load) ---- */
+
+.skeleton-card {
+  height: 112px;
+  margin-bottom: 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: linear-gradient(100deg, var(--color-card) 30%, var(--color-accent-soft) 50%, var(--color-card) 70%);
+  background-size: 300% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+
+/* ---- Tablet and below: filters become a collapsible panel above the list ---- */
+
+@media (max-width: 860px) {
+  .results-layout {
+    flex-direction: column;
+    gap: 0;
+  }
+  .results-main {
+    width: 100%;
+  }
+  .btn.filters-toggle {
+    display: inline-flex;
+    width: 100%;
+    margin-bottom: 12px;
+    min-height: 46px;
+  }
+  .filter-sidebar {
+    display: none;
+    width: 100%;
+    min-width: 0;
+    position: static;
+    margin-bottom: 14px;
+  }
+  .filter-sidebar.open {
+    display: block;
+  }
+  .filter-sidebar.open .filter-group:nth-child(1) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    column-gap: 12px;
+  }
+  .filter-sidebar.open .filter-group:nth-child(1) .filter-group-title,
+  .filter-sidebar.open .filter-group:nth-child(1) .filter-empty {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .modify-search-bar {
+    grid-template-columns: 1fr;
+    padding: 14px;
+    gap: 12px;
+  }
+  .results-toolbar {
+    justify-content: stretch;
+  }
+  .sort-select {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+  .empty-state {
+    padding: 24px 16px;
+  }
+  .empty-actions .btn {
+    flex: 1 1 120px;
+  }
+  .leg-card {
+    padding: 14px;
+  }
+}
+
+/* ---- Search-mode pills inside the Update-search bar ---- */
+.modify-modes {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px;
+  background: var(--color-accent-soft);
+  border-radius: 12px;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.modify-mode {
+  border: none;
+  background: transparent;
+  padding: 7px 14px;
+  border-radius: 9px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.modify-mode.active {
+  background: var(--color-card);
+  color: var(--color-accent-dark);
+  box-shadow: var(--shadow-sm);
+}
+
+.modify-search-bar .place-field {
+  position: relative;
+}
