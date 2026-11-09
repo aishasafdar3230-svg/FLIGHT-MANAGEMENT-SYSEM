@@ -9,6 +9,9 @@ const userSchema = new mongoose.Schema(
     darkMode: { type: Boolean, default: false },
     emailNotifications: { type: Boolean, default: true },
     promotionalEmails: { type: Boolean, default: true },
+    // Forgot-password flow: only the SHA-256 hash of the emailed token is stored.
+    resetPasswordToken: { type: String },
+    resetPasswordExpires: { type: Date },
   },
   { timestamps: true }
 );
